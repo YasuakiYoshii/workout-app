@@ -1,0 +1,12 @@
+{
+    "name": "workout-app",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "node",
+    "workspaceFolder": "/workout-app",
+    "forwardPorts": [
+        3000
+    ],
+    "settings": {
+        "terminal.integrated.automationShell.linux": "/bin/bash"
+    }
+}
