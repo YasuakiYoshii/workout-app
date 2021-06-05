@@ -4,22 +4,25 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   // define the callAPI function that takes a first name and last name as parameters
-  const callAPI = (firstName, lastName) => {
+  const callAPI = async event => {
+    event.preventDefault();
+
+    console.log(process.env.NEXT_PUBLIC_DB_RNS)
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
     myHeaders.append("Content-Type", "application/json");
     // using built in JSON utility package turn object to string and store in a variable
-    var raw = JSON.stringify({ "firstName": firstName, "lastName": lastName });
+    const raw = JSON.stringify({ "firstName": event.target.fName.value, "lastName": event.target.lName.value });
     // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
+    const requestOptions = {
       method: 'POST',
       headers: myHeaders,
       body: raw,
       redirect: 'follow'
     };
     // make API call with parameters and use promises to get response
-    fetch("https://ykd11brazi.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
+    fetch(process.env.NEXT_PUBLIC_DB_RNS, requestOptions)
       .then(response => response.text())
       .then(result => alert(JSON.parse(result).body))
       .catch(error => console.log('error', error));
@@ -71,12 +74,12 @@ export default function Home() {
             </p>
           </a>
         </div>
-        <form>
-          <label>First Name :</label>
-          <input type="text" id="fName" />
-          <label>Last Name :</label>
-          <input type="text" id="lName" />
-          <button type="button" onclick={callAPI(document.getElementById('fName').value, document.getElementById('lName').value)}>Call API</button>
+        <form onSubmit={callAPI}>
+          <label htmlFor="fName">First Name :</label>
+          <input type="text" name="fName" id="fName" />
+          <label htmlFor="lName">Last Name :</label>
+          <input type="text" name="lName" id="lName" />
+          <button type="submit">Call API</button>
         </form>
       </main>
 
