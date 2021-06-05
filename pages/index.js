@@ -7,7 +7,6 @@ export default function Home() {
   const callAPI = async event => {
     event.preventDefault();
 
-    console.log(process.env.NEXT_PUBLIC_DB_RNS)
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
