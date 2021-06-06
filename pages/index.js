@@ -4,28 +4,28 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   // define the callAPI function that takes a first name and last name as parameters
-  const callAPI = async event => {
-    event.preventDefault();
+  // const callAPI = async event => {
+  //   event.preventDefault();
 
-    // instantiate a headers object
-    var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    const raw = JSON.stringify({ "firstName": event.target.fName.value, "lastName": event.target.lName.value });
-    // create a JSON object with parameters for API call and store in a variable
-    const requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    // make API call with parameters and use promises to get response
-    fetch(process.env.NEXT_PUBLIC_DB_RNS, requestOptions)
-      .then(response => response.text())
-      .then(result => alert(JSON.parse(result).body))
-      .catch(error => console.log('error', error));
-  }
+  //   // instantiate a headers object
+  //   var myHeaders = new Headers();
+  //   // add content type header to object
+  //   myHeaders.append("Content-Type", "application/json");
+  //   // using built in JSON utility package turn object to string and store in a variable
+  //   const raw = JSON.stringify({ "firstName": event.target.fName.value, "lastName": event.target.lName.value });
+  //   // create a JSON object with parameters for API call and store in a variable
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: 'follow'
+  //   };
+  //   // make API call with parameters and use promises to get response
+  //   fetch(process.env.NEXT_PUBLIC_DB_RNS, requestOptions)
+  //     .then(response => response.text())
+  //     .then(result => alert(JSON.parse(result).body))
+  //     .catch(error => console.log('error', error));
+  // }
   return (
     <div className={styles.container}>
       <Head>
@@ -73,13 +73,13 @@ export default function Home() {
             </p>
           </a>
         </div>
-        <form onSubmit={callAPI}>
+        {/* <form onSubmit={callAPI}>
           <label htmlFor="fName">First Name :</label>
           <input type="text" name="fName" id="fName" />
           <label htmlFor="lName">Last Name :</label>
           <input type="text" name="lName" id="lName" />
           <button type="submit">Call API</button>
-        </form>
+        </form> */}
       </main>
 
       <footer className={styles.footer}>
